@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Darker Grotesque", sans-serif;
+  background: white;
+  color: rgb(2, 2, 2);
+}/*# sourceMappingURL=main.css.map */
+
+section {
+  position: absolute;
+  top:0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #181818;
+  transform-origin:center;
+  color:white
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+h2 {
+  font-size: 5em;
+}
+
+h1 {
+  font-size: 4em;
+  visibility: hidden;
+}
