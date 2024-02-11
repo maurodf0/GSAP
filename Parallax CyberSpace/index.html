@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Y B E R S P A C E</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+    <section></section>
+    <section class="space">
+        <h1>Cyberspace</h1>
+        <img src="images/space1.jpg" data-speed="-196" alt="">
+        <img src="images/space2.jpg" data-speed="-254" alt="">
+        <img src="images/space3.jpg" data-speed="-668" alt="">
+        <img src="images/space4.jpg" data-speed="-122" alt="">
+    </section>
+    <section class="horizontal">
+        <h2 data-speed="460">Cyberspace</h2>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
+    <script>
+
+        const heading = document.querySelector('h1');
+        const headingSplit = new SplitType(heading);
+        const imgs = gsap.utils.toArray('img');
+        const h2 = document.querySelector('h2');
+
+        const letters = heading.querySelectorAll('.char');
+
+        function getRandom(min,max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        letters.forEach(letter => {
+            const randomYPercent = getRandom(0, 200);
+
+            gsap.fromTo(letter, {
+                yPercent: randomYPercent,
+                opacity:0,
+            }, 
+            {
+                opacity:1,
+                yPercent:0,
+                scrollTrigger: {
+                    trigger: '.space',
+                    start: 'top center',
+                    end: 'bottom bottom',
+                    scrub: true
+                }
+            });
+        });
+
+        imgs.forEach(img => {
+            
+            gsap.from(img, {
+                yPercent: img.dataset.speed,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top bottom',
+                    scrub:true
+                }
+            })
+        });
+
+        gsap.from(h2, {
+            x: h2.dataset.speed,
+            scrollTrigger: {
+                trigger: h2,
+                scrub: true,
+                start: 'top 95%',
+                end:'left left',
+                markers: true
+            }
+        })
+
+        // smooth scroll
+
+        const lenis = new Lenis()
+
+        function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+
+    </script>
+</body>
+</html>
